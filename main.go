@@ -100,7 +100,7 @@ func usage(commandGroups []common.CommandGroup) {
 				}
 			}
 		}
-		say.Fprintln(os.Stderr, 0, say.Red("Unkown command: %s", os.Args[2]))
+		say.Fprintln(os.Stderr, 0, say.Red("Unknown command: %s", os.Args[2]))
 	}
 
 	say.Fprintln(os.Stderr, 0, "%s", say.Cyan("Help and Autocompletion"))
