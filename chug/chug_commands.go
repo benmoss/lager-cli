@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/benmoss/chug/common"
+	"github.com/benmoss/lager-cli/common"
 	"github.com/onsi/say"
 )
 

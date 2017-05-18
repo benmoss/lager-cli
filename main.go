@@ -7,8 +7,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/benmoss/chug/chug"
-	"github.com/benmoss/chug/common"
+	"github.com/benmoss/lager-cli/chug"
+	"github.com/benmoss/lager-cli/common"
 	"github.com/onsi/say"
 )
 
