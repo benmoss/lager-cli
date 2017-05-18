@@ -7,7 +7,7 @@ import (
 
 	"code.cloudfoundry.org/lager"
 	"code.cloudfoundry.org/lager/chug"
-	. "github.com/benmoss/chug/chug"
+	. "github.com/benmoss/lager-cli/chug"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )
@@ -68,13 +68,13 @@ var _ = Describe("ChugFilter", func() {
 
 	Context("with no time constraints or filters", func() {
 		It("should return all the entries", func() {
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-1"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-1"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-4"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-1"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-1"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-4"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
 			Eventually(out).Should(BeClosed())
 		})
 	})
@@ -85,9 +85,9 @@ var _ = Describe("ChugFilter", func() {
 		})
 
 		It("should return entries with `raw`s that match the filter", func() {
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-1"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-1"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-4"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-1"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-1"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-4"))
 			Consistently(out).ShouldNot(Receive())
 			Eventually(out).Should(BeClosed())
 		})
@@ -99,10 +99,10 @@ var _ = Describe("ChugFilter", func() {
 		})
 
 		It("should only return entries with `raw`s that do not match the exclude filter", func() {
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
 			Eventually(out).Should(BeClosed())
 		})
 	})
@@ -114,8 +114,8 @@ var _ = Describe("ChugFilter", func() {
 		})
 
 		It("should only return entries with `raw`s that match the match filter but not the exclude filter", func() {
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
 			Eventually(out).Should(BeClosed())
 		})
 	})
@@ -126,12 +126,12 @@ var _ = Describe("ChugFilter", func() {
 		})
 
 		It("should only return entries after the minimum time, ignoring leading non-lager lines", func() {
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-1"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-4"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-1"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-4"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
 			Eventually(out).Should(BeClosed())
 		})
 	})
@@ -142,11 +142,11 @@ var _ = Describe("ChugFilter", func() {
 		})
 
 		It("should only return entries after the minimum time", func() {
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-4"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-4"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
 			Eventually(out).Should(BeClosed())
 		})
 	})
@@ -157,11 +157,11 @@ var _ = Describe("ChugFilter", func() {
 		})
 
 		It("should only return entries before the maximum time", func() {
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-1"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-1"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-1"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-1"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
 			Consistently(out).ShouldNot(Receive())
 			Eventually(out).Should(BeClosed())
 		})
@@ -173,13 +173,13 @@ var _ = Describe("ChugFilter", func() {
 		})
 
 		It("should return the lager lines", func() {
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-1"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-1"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
-			Ω(nextEntry().Log.Message).Should(Equal("logger.lager-4"))
-			Ω(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-1"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-1"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-2"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-2"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-3"))
+			Expect(nextEntry().Log.Message).Should(Equal("logger.lager-4"))
+			Expect(nextEntry().Raw).Should(ContainSubstring("none-lager-3"))
 			Eventually(out).Should(BeClosed())
 		})
 	})
