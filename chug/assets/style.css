@@ -1,0 +1,403 @@
+body {
+    margin:0;
+    font-size: 14px;
+    font-family: "helveticaneue-light", sans-serif;
+    background-color: #f9f9f9;
+    color:#333;
+}
+
+#app {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+/* options */
+#options {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:36px;
+    line-height: 36px;
+    background-color: rgba(250,250,250,0.95);
+    box-shadow: 0 0 8px rgba(250,250,250,0.95);
+    -webkit-box-sizing: border-box;
+    z-index:1;
+}
+
+#options label {
+    margin:0 5px;
+}
+
+#options input[type="text"] {
+    margin: 0 5px;
+    width:150px;
+}
+
+/* histogram */
+#filler {
+    position: absolute;
+    top:0px;
+    left:0;
+    width:100px;
+    bottom:0;
+    background-color:#222;
+    -webkit-box-sizing: border-box;
+}
+
+#histogram {
+    position: absolute;
+    top:40px;
+    left:6px;
+    width:94px;
+    bottom:0;
+    background-color:#333;
+    -webkit-box-sizing: border-box;
+}
+
+#histogram .base {
+    position: absolute;
+    background-color: #779;
+}
+
+#histogram.filtered .base {
+    background-color: #557;
+}
+
+#histogram .error-line {
+    position:absolute;
+    z-index:1;
+    background-color: rgba(255,100,100,1.0);
+    left:0;
+    right:0;
+    height:1px;
+    box-shadow: 0 0 1px rgb(255,100,100);
+}
+
+#histogram .filter {
+    position:absolute;
+    background-color: #cce;
+    z-index:2;
+}
+
+#histogram .highlight {
+    position:absolute;
+    background-color: #ff3;
+    z-index:3;
+}
+
+#visible-range-top {
+    position:absolute;
+    z-index:4;
+    border-bottom:2px solid #77a;
+    background-color: rgba(0,0,0,0.3);
+    top:0;
+    left:0;
+    right:0;
+}
+
+#visible-range-bottom {
+    position:absolute;
+    z-index:4;
+    border-top:2px solid #99b;
+    background-color: rgba(0,0,0,0.3);
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+#histogram-hover {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index: 5;
+}
+
+#histogram-hover-time {
+    position:absolute;
+    left:100%;
+    background-color: rgba(0,0,0,0.7);
+    color: #fff;
+    z-index:6;
+    width:250px;
+    -webkit-box-sizing: border-box;
+}
+
+
+/* log-view */
+#log-view {
+    position: absolute;
+    top:0;
+    left:100px;
+    right:0;
+    bottom:0;
+    padding-top: 40px;
+    padding-left: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-box-sizing: border-box;
+
+    background-color: #222;
+    font-family: menlo, monospace;
+    color:#eee;
+}
+
+#log-view.show-raw.filtered .raw-log, #log-view.filtered .lager-log {
+    display: none;
+}
+
+#log-view.show-raw.filtered .raw-log.show, #log-view.filtered .lager-log.show {
+    display: block;
+}
+
+#log-view .highlight {
+    background: -webkit-gradient(linear, left top, right top, color-stop(10%,rgba(255,255,200,0.3)), color-stop(100%,rgba(255,255,200,0)));
+    padding-top:4px;
+    padding-bottom:4px;
+}
+
+/* raw logs */
+#log-view .raw-log {
+    display: none;
+}
+
+#log-view.show-raw .raw-log {
+    display: block;
+    margin-top:4px;
+    margin-bottom:4px;
+    padding-left:5px;
+    color:#999;
+}
+
+#log-view .raw-log .message {
+    display: inline-block;
+    max-width: 1000px;
+    padding-left: 264px;
+}
+
+/* lager logs */
+#log-view .lager-log {
+    margin-top:4px;
+    margin-bottom:4px;
+    padding-left:5px;
+}
+
+/* absolute timestamps */
+#log-view .absolute-timestamp {
+    display: none;
+}
+
+#log-view.show-absolute-time .absolute-timestamp {
+    display: inline-block;
+    width: 160px;
+    vertical-align: top
+}
+
+#log-view .raw-log .absolute-timestamp {
+    font-style: italic;
+}
+
+/* relative timestamps */
+#log-view .relative-timestamp {
+    display: none;
+}
+
+#log-view.show-relative-time .relative-timestamp {
+    display: inline-block;
+    width: 90px;
+    vertical-align: top
+}
+
+#log-view .raw-log .relative-timestamp {
+    font-style: italic;
+}
+
+/* sources */
+#log-view .source {
+    display: inline-block;
+    width: 120px;
+    vertical-align: top;
+    font-weight: bold;
+}
+
+/* log-levels */
+#log-view .level {
+    display: inline-block;
+    width: 65px;
+    vertical-align: top
+}
+
+/* sessions */
+#log-view .session {
+    display: inline-block;
+    width: 80px;
+    vertical-align: top
+}
+
+/* content */
+#log-view .content {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 1000px;
+}
+
+/* message */
+#log-view .lager-log .message {
+    font-weight: bold
+}
+
+/* data */
+#log-view .data {
+    display: none;
+}
+
+#log-view.show-data .data {
+    display: block;
+}
+
+#log-view .data .big-data  {
+    display: none;
+}
+
+#log-view.show-big-data .data .big-data  {
+    display: block;
+}
+
+#log-view.show-big-data .data .small-data  {
+    display: none;
+}
+
+
+#log-view .data {
+    color: #bbb;
+    font-size: 0.9em;
+    margin-top: 2px;
+    margin-left: 4px;
+}
+
+#log-view .data dl {
+    margin:0;
+}
+
+#log-view .data dd {
+    margin:0;
+    color: #999;
+}
+
+#log-view .data dd pre {
+    margin:0;
+}
+
+/* colors */
+#log-view .level-debug  {
+    opacity:0.8;
+}
+
+#log-view .level-debug .level {
+    color: #999;
+}
+
+#log-view .level-error .level, #log-view .level-fatal .level, #log-view .error, #log-view .trace {
+    color: #f00;
+    font-weight: bold;
+}
+
+#log-view .session {
+    color: #999;
+}
+
+
+#log-view .source-garden-linux {
+    color: #ffcfa7;
+}
+
+#log-view .source-executor {
+    color: #a0a5ff;
+}
+
+#log-view .source-rep {
+    color: #7cd293;
+}
+
+#log-view .source-converger {
+    color: #fff69b;
+}
+
+#log-view .source-auctioneer {
+    color: #f98ef9;
+}
+
+#log-view .source-route-emitter {
+    color: #7ef99d;
+}
+
+#log-view .source-tps {
+    color: #7685ce;
+}
+
+#log-view .source-stager {
+    color: #ce8b91;
+}
+
+#log-view .source-nsync-listener {
+    color: #c3be74;
+}
+
+#log-view .source-nsync-bulker {
+    color: #b5b16d;
+}
+
+#log-view .source-file-server {
+    color: #d6bec5;
+}
+
+#log-view .source-router {
+    color: #bdd6b5;
+}
+
+#log-view .source-loggregator {
+    color: #d6c4b3;
+}
+
+/* ginkgo */
+#log-view .ginkgo-start {
+    background: -webkit-gradient(linear, left top, right top, color-stop(10%,rgba(100,100,255,0.3)), color-stop(100%,rgba(100,100,255,0)));
+    padding-top:4px;
+    padding-bottom:4px;
+}
+
+#log-view .level-INFO.ginkgo-end {
+    background: -webkit-gradient(linear, left top, right top, color-stop(10%,rgba(100,255,100,0.3)), color-stop(100%,rgba(100,255,100,0)));
+    padding-top:4px;
+    padding-bottom:4px;
+}
+
+#log-view .level-ERROR.ginkgo-end {
+    background: -webkit-gradient(linear, left top, right top, color-stop(10%,rgba(255,100,100,0.3)), color-stop(100%,rgba(255,100,100,0)));
+    padding-top:4px;
+    padding-bottom:4px;
+}
+
+#log-view .ginkgo-name-odd {
+    color:#999;
+}
+
+#log-view .ginkgo-name-even {
+    color:#ddd;
+}
+
+#log-view .ginkgo-name-it {
+    color:#fff;
+}
+
+#log-view .ginkgo-error {
+    margin: 0;
+    margin-left:20px;
+    margin-top:4px;
+    margin-bottom:4px;
+}
