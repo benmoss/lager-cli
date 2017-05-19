@@ -23,7 +23,7 @@ func ParseTimeFlag(t string) (time.Time, error) {
 		return time.Now().Add(duration), err
 	}
 
-	out, err := time.Parse("01/02 15:04:05.00", t)
+	out, err := time.Parse("02/01/06 15:04:05.99 MST", t)
 	if err == nil {
 		return out, err
 	}

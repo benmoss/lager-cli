@@ -17,8 +17,10 @@ func main() {
 
 	commandGroups := []common.CommandGroup{
 		common.CommandGroup{
-			Name:        "Chug",
-			Description: "Commands to prettify lager logs",
+			Name: "Chug",
+			Description: `Commands to prettify lager logs
+Note: A chug-formatted time looks like 02/01/06 15:04:05.99 MST
+`,
 			Commands: []common.Command{
 				chug.ChugCommand(),
 				chug.ServeChugCommand(),

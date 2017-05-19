@@ -31,9 +31,9 @@ var _ = Describe("TimeParser", func() {
 
 	Context("when passed a chug-formatted timestamp", func() {
 		It("should return that time", func() {
-			expectedTime, err := time.Parse("01/02 15:04:05.00", "09/08 22:45:06.79")
+			expectedTime, err := time.Parse("02/01/06 15:04:05.99 MST", "10/03/17 07:35:14.43 PST")
 			Expect(err).ShouldNot(HaveOccurred())
-			Expect(ParseTimeFlag("09/08 22:45:06.79")).Should(Equal(expectedTime))
+			Expect(ParseTimeFlag("10/03/17 07:35:14.43 PST")).Should(Equal(expectedTime))
 		})
 	})
 

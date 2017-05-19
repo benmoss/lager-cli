@@ -114,7 +114,7 @@ func (s *stenographer) PrettyPrintLog(log chug.LogEntry) {
 
 	var timestamp string
 	if s.Absolute {
-		timestamp = log.Timestamp.Format("01/02 15:04:05.00")
+		timestamp = log.Timestamp.Format("02/01/06 15:04:05.99 MST")
 	} else {
 		timestamp = log.Timestamp.Sub(s.RelativeTime).String()
 		timestamp = fmt.Sprintf("%17s", timestamp)
