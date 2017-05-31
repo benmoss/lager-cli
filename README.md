@@ -1,6 +1,6 @@
-# Chug
+# Lager CLI
 
-Chug is a CLI for viewing [Lager](http://code.cloudfoundry.org/lager) logs.
+lager-cli is a CLI for viewing [Lager](http://code.cloudfoundry.org/lager) logs.
 
 ## Installing
 
